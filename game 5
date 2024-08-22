@@ -1,0 +1,30 @@
+setInterval(() => {
+  let objectX = Math.floor(Math.random() * 12);
+  addSprite(objectX, 0, fallingObject);
+}, 1000);
+
+onInput("a", () => {
+  getFirst(player).x -= 1;
+});
+
+onInput("d", () => {
+  getFirst(player).x += 1;
+});
+
+afterInput(() => {
+  const player = getFirst(player);
+  const objects = getAll(fallingObject);
+
+  objects.forEach(obj => {
+    if (obj.y === player.y && obj.x === player.x) {
+      obj.remove();
+      score += 1;
+      clearText();
+      addText("Score: " + score);
+    } else if (obj.y > player.y) {
+      obj.remove();
+    } else {
+      obj.y += 1;
+    }
+  });
+});
