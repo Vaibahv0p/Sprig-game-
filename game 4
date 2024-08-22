@@ -1,0 +1,17 @@
+setMap(map`
+EEE
+EEE
+EEE`);
+addSprite(1, 1, POINTER);
+
+let currentPlayer = true;
+let gameBoard = [
+  [" ", " ", " "],
+  [" ", " ", " "],
+  [" ", " ", " "]
+];
+let gameFinished = false;
+let aiLoseTurn = false;
+let doubleMove = false;
+let extraMove = false;
+let aiSkipMoves = 0;
