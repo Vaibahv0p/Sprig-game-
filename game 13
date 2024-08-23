@@ -1,0 +1,15 @@
+function spawnFood() {
+  let emptySpaces = [];
+  for (let y = 0; y < 10; y++) {
+    for (let x = 0; x < 10; x++) {
+      if (!snake.some(segment => segment.x === x && segment.y === y)) {
+        emptySpaces.push({ x, y });
+      }
+    }
+  }
+
+  if (emptySpaces.length > 0) {
+    foodPosition = emptySpaces[Math.floor(Math.random() * emptySpaces.length)];
+    addSprite(foodPosition.x, foodPosition.y, food);
+  }
+}
