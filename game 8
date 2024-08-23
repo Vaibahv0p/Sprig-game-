@@ -1,0 +1,16 @@
+function checkWin() {
+  const winPatterns = [
+    [[0, 0], [1, 0], [2, 0]], // Top row
+    [[0, 1], [1, 1], [2, 1]], // Middle row
+    [[0, 2], [1, 2], [2, 2]], // Bottom row
+    [[0, 0], [0, 1], [0, 2]], // Left column
+    [[1, 0], [1, 1], [1, 2]], // Middle column
+    [[2, 0], [2, 1], [2, 2]], // Right column
+    [[0, 0], [1, 1], [2, 2]], // Diagonal from top-left
+    [[2, 0], [1, 1], [0, 2]], // Diagonal from top-right
+  ];
+
+  return winPatterns.some(pattern => 
+    pattern.every(([x, y]) => board[y][x] === currentPlayer)
+  );
+}
