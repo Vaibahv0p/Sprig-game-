@@ -1,0 +1,20 @@
+function endGame(message) {
+  gameFinished = true;
+  setMap(map`
+TTT
+TTT
+TTT`);
+  addText(message, { y: 7, color: color`2` });
+}
+
+function resetGame() {
+  gameFinished = false;
+  currentPlayer = true;
+  aiLoseTurn = false;
+  doubleMove = false;
+  extraMove = false;
+  gameBoard = [
+    [" ", " ", " "],
+    [" ", " ", " "],
+    [" ", " ", " "]
+  ];
