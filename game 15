@@ -1,0 +1,8 @@
+if (emptySpaces.length > 0) {
+    foodPosition = emptySpaces[Math.floor(Math.random() * emptySpaces.length)];
+    addSprite(foodPosition.x, foodPosition.y, food);
+  }
+}
+
+function moveSnake() {
+  if (!gameRunning) return;
