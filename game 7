@@ -1,0 +1,18 @@
+let currentPlayer = playerX;
+let board = [
+  [empty, empty, empty],
+  [empty, empty, empty],
+  [empty, empty, empty],
+];function makeMove(x, y) {
+  if (board[y][x] === empty) {
+    board[y][x] = currentPlayer;
+    addSprite(x, y, currentPlayer);
+    if (checkWin()) {
+      addText(`${currentPlayer} Wins!`, { x: 1, y: 4, color: color`5` });
+    } else if (board.flat().every(cell => cell !== empty)) {
+      addText("It's a Tie!", { x: 1, y: 4, color: color`5` });
+    } else {
+      currentPlayer = currentPlayer === playerX ? playerO : playerX;
+    }
+  }
+}
