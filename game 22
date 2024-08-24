@@ -1,0 +1,10 @@
+setTimeout(() => clearText(), 2000);
+  } else if (tiles.some(tile => tile.type === DOUBLE_MOVE)) {
+    const powerUp = tiles.find(tile => tile.type === DOUBLE_MOVE);
+    if (powerUp) {
+      powerUp.remove();
+    }
+    aiSkipMoves = 2; // AI skips 2 moves
+    addText("Double Move collected!", { y: 1, color: color`2` });
+    setTimeout(() => clearText(), 2000);
+  } else {
