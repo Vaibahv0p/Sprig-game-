@@ -1,0 +1,10 @@
+const pointer = getFirst(POINTER);
+  const tiles = getTile(pointer.x, pointer.y);
+  
+  if (tiles.some(tile => tile.type === POWERUP)) {
+    const powerUp = tiles.find(tile => tile.type === POWERUP);
+    if (powerUp) {
+      powerUp.remove();
+    }
+    aiLoseTurn = true;
+    addText("Power-up collected!", { y: 1, color: 
