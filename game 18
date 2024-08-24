@@ -1,0 +1,55 @@
+function
+ spawnPowerUp() {
+  if (Math.random() < 0.1) { // 10% chance to spawn a power-up after each move
+    const emptyCells = [];
+    for (let y = 0; y < 3; y++) {
+      for (let x = 0; x < 3; x++) {
+        if (gameBoard[y][x] === " ") {
+          emptyCells.push([y, x]);
+        }
+      }
+    }
+    if (emptyCells.length > 0) {
+      const [y, x] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+      const powerUpType = Math.random() < 0.5 ? POWERUP : DOUBLE_MOVE;
+      addSprite(x, y, powerUpType);
+    }
+  }
+}
+
+function minimax(board, depth, isMaximizing) {
+  if (hasWinner(board)) {
+    return isMaximizing ? -1 : 1;
+  }
+  if (isDraw(board)) {
+    return 0;
+  }
+
+  let bestScore = isMaximizing ? -Infinity : Infinity;
+  const symbol = isMaximizing ? PLAYER_Z : PLAYER_Y;
+
+  for (let y = 0; y < 3; y++) {
+    for (let x = 0; x < 3; x++) {
+      if (board[y][x] === " ") {
+        board[y][x] = symbol;
+        const score = minimax(board, depth + 1, !isMaximizing);
+        board[y][x] = " ";
+        bestScore = isMaximizing ? Math.max(score, bestScore) : Math.min(score, bestScore);
+      }
+    }
+  }
+  return bestScore;
+}
+
+function aiMove() {
+  if (aiLoseTurn || aiSkipMoves > 0) {
+    if (aiLoseTurn) {
+      aiLoseTurn = false;
+    } else {
+      aiSkipMoves--;
+    }
+    addText("AI loses a turn!", { y: 1, color: color`2` });
+    setTimeout(() => clearText(), 2000);
+    currentPlayer = !currentPlayer;
+    return;
+  }
