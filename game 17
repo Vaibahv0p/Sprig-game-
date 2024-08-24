@@ -1,0 +1,45 @@
+function endGame(message) {
+  gameFinished = true;
+  setMap(map`
+TTT
+TTT
+TTT`);
+  addText(message, { y: 7, color: color`2` });
+}
+
+function resetGame() {
+  gameFinished = false;
+  currentPlayer = true;
+  aiLoseTurn = false;
+  doubleMove = false;
+  extraMove = false;
+  gameBoard = [
+    [" ", " ", " "],
+    [" ", " ", " "],
+    [" ", " ", " "]
+  ];
+  clearText();
+  setMap(map`
+EEE
+EEE
+EEE`);
+  addSprite(1, 1, POINTER);
+}
+
+function spawnPowerUp() {
+  if (Math.random() < 0.1) { // 10% chance to spawn a power-up after each move
+    const emptyCells = [];
+    for (let y = 0; y < 3; y++) {
+      for (let x = 0; x < 3; x++) {
+        if (gameBoard[y][x] === " ") {
+          emptyCells.push([y, x]);
+        }
+      }
+    }
+    if (emptyCells.length > 0) {
+      const [y, x] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+      const powerUpType = Math.random() < 0.5 ? POWERUP : DOUBLE_MOVE;
+      addSprite(x, y, powerUpType);
+    }
+  }
+}
