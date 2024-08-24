@@ -1,0 +1,18 @@
+onInput("w", () => {
+  if (!gameFinished) getFirst(POINTER).y -= 1;
+});
+
+onInput("a", () => {
+  if (!gameFinished) getFirst(POINTER).x -= 1;
+});
+
+onInput("s", () => {
+  if (!gameFinished) getFirst(POINTER).y += 1;
+});
+
+onInput("d", () => {
+  if (!gameFinished) getFirst(POINTER).x += 1;
+});
+
+onInput("i", () => {
+  if (gameFinished || gameBoard[getFirst(POINTER).y][getFirst(POINTER).x] !== " ") return;
