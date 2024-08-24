@@ -1,0 +1,15 @@
+let bestScore = isMaximizing ? -Infinity : Infinity;
+  const symbol = isMaximizing ? PLAYER_Z : PLAYER_Y;
+
+  for (let y = 0; y < 3; y++) {
+    for (let x = 0; x < 3; x++) {
+      if (board[y][x] === " ") {
+        board[y][x] = symbol;
+        const score = minimax(board, depth + 1, !isMaximizing);
+        board[y][x] = " ";
+        bestScore = isMaximizing ? Math.max(score, bestScore) : Math.min(score, bestScore);
+      }
+    }
+  }
+  return bestScore;
+}
