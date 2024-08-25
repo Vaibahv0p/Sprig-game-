@@ -1,0 +1,20 @@
+for (let i = 0; i < coins.length; i++) {
+    if (character.x === coins[i].x && character.y === coins[i].y) {
+      coins[i].remove()
+      playTune(collectedCoin)
+      score += 1;
+      clearText()
+      addText(`Score: ${score}`, { x: 0, y: 0, color: color`4` })
+
+    }
+  }
+  for (let i = 0; i < antiCoins.length; i++) {
+    if (character.x === antiCoins[i].x && character.y === antiCoins[i].y) {
+      antiCoins[i].remove()
+      playTune(collectedAntiCoin)
+      score -= 2;
+      clearText()
+      addText(`Score: ${score}`, { x: 0, y: 0, color: color`3` })
+
+    }
+  }
