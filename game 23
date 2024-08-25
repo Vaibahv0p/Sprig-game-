@@ -1,0 +1,17 @@
+} else {
+          addText(`Try again, Collect\nthe most amount\n     of coins`, { x: 1, y: 5, color: color `3` })
+          addText(`Press 'i' to reset\n     the game`, { x: 1, y: 13, color: color`3` })
+        }
+      } else {
+        levelNumber++
+        setMap(levels[levelNumber])
+      }
+    }
+  }
+  for (let i = 0; i < coins.length; i++) {
+    if (character.x === coins[i].x && character.y === coins[i].y) {
+      coins[i].remove()
+      playTune(collectedCoin)
+      score += 1;
+      clearText()
+      addText(`Score: ${score}`, { x: 0, y: 0, color: color`4` })
