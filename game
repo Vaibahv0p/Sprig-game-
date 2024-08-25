@@ -1,0 +1,15 @@
+let character = getFirst(player)
+  let thisTile = getTile(getFirst(player).x, getFirst(player).y);
+  if (thisTile.length > 1) {
+    if (thisTile[1]._type == "d") {
+      if (levelNumber >= levels.length - 1) {
+        if (score == 36) {
+          addText(`Congrats! You Win!`, { x: 1, y: 5, color: color`4` })
+          addText(`Press 'j' to play\na secret challenge`, { x: 1, y: 8, color: color`6` })
+          addText(`Press 'i' to reset\n     the game`, { x: 1, y: 13, color: color`4` })
+        } else if (isSecretChallenge == false && score < 36) {
+          addText(`Try again. Collect\n      All puff`, { x: 1, y: 5, color: color `3` })
+          addText(`Press 'i' to reset\n     the game`, { x: 1, y: 13, color: color `3` })
+        } else if (score == 9 && isSecretChallenge == true) {
+          addText(`Congrats! You are\n   the ultimate\n    maze master!`, { x: 1, y: 5, color: color `9` })
+          addText(`Press 'i' to reset\n     the game`, { x: 1, y: 13, color: color
