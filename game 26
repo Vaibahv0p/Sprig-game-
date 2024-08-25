@@ -1,0 +1,35 @@
+if (score < 0) {
+    addText(`Try again. Collect\n  All GOLD Coins`, { x: 1, y: 5, color: color `3` })
+    addText(`Press 'i' to reset\n     the game`, { x: 1, y: 11, color: color `3` })
+  }
+})
+setInterval(() => {
+  const enemies = getAll(enemy);
+  enemies.forEach(e => {
+    const direction = Math.floor(Math.random() * 4);
+    switch (direction) {
+      case 0:
+        e.y -= 1;
+        break;
+      case 1:
+        e.y += 1;
+        break;
+      case 2:
+        e.x -= 1;
+        break;
+      case 3:
+        e.x += 1;
+        break;
+    }
+  });
+}, 1000);
+//RESETS THE GAME
+function resetGame() {
+  score = 0
+  isSecretChallenge = false
+  clearText()
+  addText(`Score: ${score}`, { x: 0, y: 0, color: color`4` })
+  addText(`   WASD to move\n   'i' to reset\n Collect coins and\n navigate through\n the mazes to win!`, { x: 1, y: 5, color: color`D` })
+  levelNumber = 0
+  setMap(levels[levelNumber])
+}
