@@ -180,4 +180,21 @@ setMap(currentLevel);
 setSolids([player,wall,wallh,crosswall])
 setPushables({
   [ player ]: [puff]
+
+INPUT
+onInput("d", () => {
+  getFirst(player).x += 1;
+checkCollision();// Check for collision after movement
+})
+onInput("a", () => {
+  getFirst(player).x -= 1;
+checkCollision();// Check for collision after move
+})
+onInput("w", () => {
+  getFirst(player).y -= 1;
+checkCollision();// Check for collision after move
+})
+onInput("s", () => {
+  getFirst(player).y += 1;
+checkCollision();// Check for collision after move
 })
