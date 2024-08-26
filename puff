@@ -198,3 +198,18 @@ onInput("s", () => {
   getFirst(player).y += 1;
 checkCollision();// Check for collision after move
 })
+// Handle reset functionality
+onInput("i", () => {
+  score = 0;  // Reset score
+  level = 0;  // Reset to the first level
+  setMap(levels[level]);  // Load the first level map
+  clearText();  // Clear existing text
+  addText(`Score: ${score}`, {x: 0, y: 0, color: color`3`});  // Reset score display
+});
+afterInput(()=> {
+  {
+    type
+    x
+    y
+  }
+  cleartiles(x,y)
