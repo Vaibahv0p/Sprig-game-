@@ -33,3 +33,20 @@ function resetGame() {
   levelNumber = 0
   setMap(levels[levelNumber])
 }
+afterInput(() => {
+  const player = getFirst(player);
+  const objects = getAll(fallingObject);
+
+  objects.forEach(obj => {
+    if (obj.y === player.y && obj.x === player.x) {
+      obj.remove();
+      score += 1;
+      clearText();
+      addText("Score: " + score);
+    } else if (obj.y > player.y) {
+      obj.remove();
+    } else {
+      obj.y += 1;
+    }
+  });
+});
