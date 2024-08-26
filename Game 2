@@ -49,3 +49,28 @@
 3FFFFFFFFFFFFFF3
 3FFFFFFFFFFFFFF3
 3333333333333333`],
+afterInput(() => {
+  const checkIfWon = tilesWith(goal, player).length;
+  if(checkIfWon === 0) {
+    addText("you win!");
+});
+*/
+afterInput(() => {
+  // count the number of tiles with goals and boxes
+  const goalNum = tilesWith(goal, player).length;
+  
+  if (goalNum === 1) {
+    // increase the current level number
+    level = level + 1;
+
+    const currentLevel = levels[level];
+
+    // make sure the level exists and if so set the map
+    if (currentLevel !== undefined) {
+      setMap(currentLevel);
+    } else {
+      addText("you win!", { y: 4, color: color`3` });
+    }
+  }
+  }
+);
