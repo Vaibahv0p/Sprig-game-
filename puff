@@ -152,3 +152,32 @@ addText(`Score: ${score}`,{x: 0, y: 0, color: color`1`})
 addText(`   WASD to move\n   'i' to reset\n Collect puffs and\n navigate through\n the mazes to win!`, {x: 1, y:5, color: color`0`}) 
 let level = 0
 const levels = [
+  map`
+o..dddddddd
+.h.........
+.hh.....wm.
+...w.......
+...w....wm.
+...w.......
+...w....wm.
+p..w.......
+ooow.......
+dddgg.c.c.c`,
+  map`
+pddddddg
+......mw
+dddg...w
+...w.h.w
+.w.w..mw
+.w.w...w
+.w.wm..w
+.wow...w
+.gdg...w
+c....h.c`
+];
+const currentLevel = levels[level];
+setMap(currentLevel);
+setSolids([player,wall,wallh,crosswall])
+setPushables({
+  [ player ]: [puff]
+})
