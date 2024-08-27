@@ -57,3 +57,27 @@ setLegend(
 );
 
 setBackground(wall);
+const level = map`
+  wwww
+  w c 
+  w c 
+  w c 
+  wwww
+`;
+let score = 0;
+addText(`Score: ${score}`, { x: 0, y: 0, color: color`1` });
+
+setSolids([player, wall]);
+
+onInput("d", () => {
+  movePlayer(1, 0);
+});
+onInput("a", () => {
+  movePlayer(-1, 0);
+});
+onInput("w", () => {
+  movePlayer(0, -1);
+});
+onInput("s", () => {
+  movePlayer(0, 1);
+});
