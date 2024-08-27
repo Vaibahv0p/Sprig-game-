@@ -81,3 +81,17 @@ onInput("w", () => {
 onInput("s", () => {
   movePlayer(0, 1);
 });
+function movePlayer(dx, dy) {
+  const playerSprite = getFirst(player);
+  const newX = playerSprite.x + dx;
+  const newY = playerSprite.y + dy;
+  if (!isSolid(newX, newY)) {
+    playerSprite.x = newX;
+    playerSprite.y = newY;
+    checkCoin(newX, newY);
+  }
+}
+
+function isSolid(x, y) {
+  return tilesWith(wall).some(tile => tile.x <= x && x < tile.x + 1 && tile.y <= y && y < tile.y + 1);
+}
