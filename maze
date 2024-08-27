@@ -177,3 +177,32 @@ pb.b.b.b.b.b.b.b.b.b.b.b.
 .b.b.b.b.b.b.b.b.b.b.b.b.
 .b.b.b.b.b.b.b.b.b.b.b.b.
 ...b...b...b...b...b...bg`, 
+  ]
+setMap(levels[level])
+
+setPushables({
+  [ player ]: []
+})
+
+onInput("s", () => {
+  getFirst(player).y += 1
+})
+
+onInput("w", () => {
+  getFirst(player).y -= 1
+})
+
+onInput("d", () => {
+  getFirst(player).x += 1
+})
+
+onInput("a", () => {
+  getFirst(player).x -= 1
+})
+/*
+afterInput(() => {
+  const checkIfWon = tilesWith(goal, player).length;
+  if(checkIfWon === 0) {
+    addText("you win!");
+});
+*/
