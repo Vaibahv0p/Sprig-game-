@@ -167,3 +167,35 @@ b.b.b...b.
 b.b.b.b.b.
 b...bbb.b.
 bbbb.....g`, 
+  map `
+.b...b...b...b...b...b...
+pb.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+.b.b.b.b.b.b.b.b.b.b.b.b.
+...b...b...b...b...b...bg`, 
+  ]
+setMap(levels[level])
+
+setPushables({
+  [ player ]: []
+})
