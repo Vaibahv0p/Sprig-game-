@@ -95,3 +95,18 @@ function movePlayer(dx, dy) {
 function isSolid(x, y) {
   return tilesWith(wall).some(tile => tile.x <= x && x < tile.x + 1 && tile.y <= y && y < tile.y + 1);
 }
+function checkCoin(x, y) {
+  const coins = getTile(x, y).filter(sprite => sprite.type === coin);
+  if (coins.length > 0) {
+    coins.forEach(coin => {
+      coin.remove();
+      score++;
+      updateScore();
+    });
+  }
+}
+
+function updateScore() {
+  clearText();
+  addText(`Score: ${score}`, { x: 0, y: 0, color: color`1` });
+}
