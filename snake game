@@ -137,3 +137,43 @@ if (newHead) {
       clearTile(newHead.x, newHead.y);
       placeApple();
     }
+if (newHeadTile.find(t => t.type === apple)) {
+      playTune(eatSound);
+      growing = true;
+      clearTile(newHead.x, newHead.y);
+      placeApple();
+    }
+
+    addSprite(newHead.x, newHead.y, snakeBody);
+    if (snake.length > 0) {
+      addSprite(head.x, head.y, snakeBody);
+    }
+    
+    snake.unshift(newHead);
+    
+    if (!growing) {
+      let tail = snake.pop();
+      clearTile(tail.x, tail.y);
+    } else {
+      growing = false;
+    }
+  }
+}
+
+onInput("w", () => {
+    snakeDirection = "up";
+});
+
+onInput("a", () => {
+    snakeDirection = "left";
+});
+
+onInput("s", () => {
+    snakeDirection = "down";
+});
+
+onInput("d", () => {
+    snakeDirection = "right";
+});
+
+setInterval(moveSnake, 120);
