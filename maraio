@@ -74,3 +74,51 @@ CC0CCCCCC0CCCCCC` ],
 ...0.........0..
 ..0.........0...` ]
 );
+// Set the map
+setMap(map`
+............
+............
+..p.........
+..b.........
+..b.........
+..b..e......
+..b.........
+..bbbbbb....
+............
+gggggggggggg`);
+setMap(map`
+.......
+......e
+.....bb
+p..b...
+gggeeee`);
+setMap(map`
+bb....
+...bb.
+e.....
+bb..e.
+e..bb.
+bb....
+.....e
+gggggg`)
+setSolids([player, ground, brick]);
+
+setPushables({
+  [ player ]: [],
+});
+
+onInput("a", () => {
+  getFirst(player).x -= 1;
+});
+
+onInput("d", () => {
+  getFirst(player).x += 1;
+});
+
+onInput("w", () => {
+  getFirst(player).y -= 1;
+});
+
+onInput("s", () => {
+  getFirst(player).y += 1;
+});
