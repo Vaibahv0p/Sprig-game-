@@ -121,3 +121,19 @@ function moveSnake() {
   } else if (snakeDirection === "right") {
     newHead = { x: head.x + 1, y: head.y };
   }
+if (newHead) {
+    let newHeadTile = getTile(newHead.x, newHead.y);
+    
+    if (newHeadTile.find(t => t.type === wall) || newHeadTile.find(t => t.type === snakeBody)) {
+      playTune(gameOverSound);
+      addText("Game Over!", { y: 4, color: color`3` });
+      gameOver = true;
+      return;
+    }
+
+    if (newHeadTile.find(t => t.type === apple)) {
+      playTune(eatSound);
+      growing = true;
+      clearTile(newHead.x, newHead.y);
+      placeApple();
+    }
