@@ -86,3 +86,38 @@ let snake = [getFirst(snakeBody)];
 let snakeDirection = "right";
 let growing = false;
 let gameOver = false;
+function placeApple() {
+  let emptyTiles = [];
+  for (let x = 0; x < width(); x++) {
+    for (let y = 0; y < height(); y++) {
+      let tile = getTile(x, y);
+      if (tile.length === 0 || tile.every(sprite => ![snakeBody, wall].includes(sprite.type))) {
+        emptyTiles.push({ x, y });
+      }
+    }
+  }
+
+  if (emptyTiles.length > 0) {
+    let randomIndex = Math.floor(Math.random() * emptyTiles.length);
+    let { x, y } = emptyTiles[randomIndex];
+    addSprite(x, y, apple);
+  }
+}
+
+placeApple();
+
+function moveSnake() {
+  if (gameOver) return;
+
+  let head = snake[0];
+  let newHead;
+  
+  if (snakeDirection === "up") {
+    newHead = { x: head.x, y: head.y - 1 };
+  } else if (snakeDirection === "down") {
+    newHead = { x: head.x, y: head.y + 1 };
+  } else if (snakeDirection === "left") {
+    newHead = { x: head.x - 1, y: head.y };
+  } else if (snakeDirection === "right") {
+    newHead = { x: head.x + 1, y: head.y };
+  }
