@@ -141,3 +141,25 @@ afterInput(() => {
 gggggggggggg`);
   }
 });
+// Function to start the game
+function playGame() {
+    // Code to start your game
+    console.log("Game is starting...");
+    // Load your game logic here
+}
+
+// Function to reset the game
+function resetGame() {
+    // Code to reset your game
+    console.log("Game is resetting...");
+    // Reset the game state here
+}
+
+// Display the main menu options
+function showMainMenu() {
+    console.log("Main Menu:");
+    console.log("1. Play Game");
+    console.log("2. Reset Game");
+
+    // Get the user's choice (you might use prompt or similar in an actual environment)
+    const choice = prompt("Choose an option
