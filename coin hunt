@@ -40,3 +40,14 @@ onInput("d", () => getFirst(player).x++);
 afterInput(() => {
   let playerSprite = getFirst(player);
   let coins = getAll(coin);
+coins.forEach(c => {
+    if (playerSprite.x == c.x && playerSprite.y == c.y) {
+      clearTile(c.x, c.y);
+    }
+  });
+
+  // Check if all coins are collected
+  if (getAll(coin).length == 0) {
+    addText("You Win!", { y: 4, color: color`3` });
+  }
+});
