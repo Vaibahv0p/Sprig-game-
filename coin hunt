@@ -33,3 +33,10 @@ let level = map`
 ..........
 `;
 setMap(level);
+onInput("w", () => getFirst(player).y--);
+onInput("a", () => getFirst(player).x--);
+onInput("s", () => getFirst(player).y++);
+onInput("d", () => getFirst(player).x++);
+afterInput(() => {
+  let playerSprite = getFirst(player);
+  let coins = getAll(coin);
