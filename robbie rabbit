@@ -93,3 +93,42 @@ setMap(map`
 ..................
 ..................
 ..................`);
+onInput("w", () => {
+  getFirst(rabbit).y -= 1;
+});
+
+onInput("s", () => {
+  getFirst(rabbit).y += 1;
+});
+
+onInput("a", () => {
+  getFirst(rabbit).x -= 1;
+});
+
+onInput("d", () => {
+  getFirst(rabbit).x += 1;
+});afterInput(() => {
+  const rabbitObj = getFirst(rabbit);
+
+  // Check for carrot collection
+  const carrotAtRabbit = getTile(rabbitObj.x, rabbitObj.y).find(obj => obj.type === carrot);
+  if (carrotAtRabbit) {
+    clearTile(rabbitObj.x, rabbitObj.y);
+    addText("Carrot Collected!", { x: 3, y: 2 });
+    // Add score increment logic here
+  }
+
+  // Check for rock collision
+  const rockAtRabbit = getTile(rabbitObj.x, rabbitObj.y).find(obj => obj.type === rock);
+  if (rockAtRabbit) {
+    addText("Game Over!", { x: 3, y: 2 });
+    // Logic to reset or end the game
+  }
+
+  // Check for trap collision
+  const trapAtRabbit = getTile(rabbitObj.x, rabbitObj.y).find(obj => obj.type === trap);
+  if (trapAtRabbit) {
+    addText("Game Over!", { x: 3, y: 2 });
+    // Logic to reset or end the game
+  }
+});
