@@ -72,3 +72,22 @@ function updateGame() {
       clearTile(x, y);
     }
   });
+
+  // Check for collisions with the player
+  getTile(playerPosition.x, playerPosition.y).forEach((tile) => {
+    if (tile.type === rock) {
+      gameOver = true;
+      addText("Game Over!", { x: 4, y: 6, color: color`2` });
+    }
+  });
+}
+
+// Handle player input
+onInput("a", () => {
+  if (gameOver) return;
+  if (playerPosition.x > 0) {
+    clearTile(playerPosition.x, playerPosition.y);
+    playerPosition.x -= 1;
+    addSprite(playerPosition.x, playerPosition.y, player);
+  }
+});
