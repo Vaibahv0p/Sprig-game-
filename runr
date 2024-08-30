@@ -1,0 +1,77 @@
+// Define the game sprites
+let player = "p";
+let wall = "w";
+let exit = "e";
+let path = "b";
+
+// Define the game sprites with basic bitmap art
+setLegend(
+  [player, bitmap`
+    ........
+    ..3333..
+    .333333.
+    .333333.
+    .333333.
+    ..3333..
+    ........
+    ........`],
+  [wall, bitmap`
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000`],
+  [exit, bitmap`
+    ........
+    ..1111..
+    ..1111..
+    ..1111..
+    ..1111..
+    ..1111..
+    ........
+    ........`],
+  [path, bitmap`
+    ........
+    ........
+    ........
+    ........
+    ........
+    ........
+    ........
+    ........`]
+);
+
+// Initialize the game map
+setMap(map`
+w w w w w w w w w w
+w p . . . w . . . w
+w . w w . w . w . w
+w . w w . . . w . w
+w . . . . w w w . w
+w w w w . w . . . w
+w . . . . w . w w w
+w . w w w . . w w w
+w . . . . w . . . e
+w w w w w w w w w w`);
+
+// Player initial position
+let playerPosition = { x: 1, y: 1 };
+
+// Function to move the player
+function movePlayer(newX, newY) {
+  if (getTile(newX, newY).every(tile => tile.type === path || tile.type === exit)) {
+    clearTile(playerPosition.x, playerPosition.y);
+    playerPosition.x = newX;
+    playerPosition.y = newY;
+    addSprite(playerPosition.x, playerPosition.y, player);
