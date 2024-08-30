@@ -1,0 +1,60 @@
+// Define the game sprites
+let player = "p";
+let rock = "r";
+let background = "b";
+
+// Define the game level layout
+setLegend(
+  [player, bitmap`
+    ........
+    ..3333..
+    ..3333..
+    ..3333..
+    ..3333..
+    ..3333..
+    ..3333..
+    ........`],
+  [rock, bitmap`
+    ........
+    ..4444..
+    .444444.
+    .444444.
+    .444444.
+    ..4444..
+    ........
+    ........`],
+  [background, bitmap`
+    ........
+    ........
+    ........
+    ........
+    ........
+    ........
+    ........
+    ........`]
+);
+
+// Initialize the game map
+setMap(map`
+b b b b b b b b b b
+b b b b b b b b b b
+b b b b b b b b b b
+b b b b b b b b b b
+b b b b b b b b b b
+b b b b b b b b b b
+b b b b b b b b b b
+b b b b b b b b b b
+b b b b b b b b b b
+b b b b b b b b b b
+b b b b b b b b b b
+. . . . . p . . . .`);
+
+// Set initial player position
+let playerPosition = { x: 5, y: 11 };
+let gameOver = false;
+
+// Function to randomly generate falling rocks
+function spawnRock() {
+  let randomX = Math.floor(Math.random() * 10);
+  addSprite(randomX, 0, rock);
+}
