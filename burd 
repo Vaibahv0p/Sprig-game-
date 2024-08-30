@@ -58,3 +58,17 @@ function spawnRock() {
   let randomX = Math.floor(Math.random() * 10);
   addSprite(randomX, 0, rock);
 }
+// Update the game state
+function updateGame() {
+  if (gameOver) return;
+  
+  // Move rocks down
+  getAll(rock).forEach((object) => {
+    let [x, y] = getPosition(object);
+    if (y < 11) {
+      clearTile(x, y);
+      addSprite(x, y + 1, rock);
+    } else {
+      clearTile(x, y);
+    }
+  });
