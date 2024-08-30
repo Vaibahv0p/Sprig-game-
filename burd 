@@ -91,3 +91,17 @@ onInput("a", () => {
     addSprite(playerPosition.x, playerPosition.y, player);
   }
 });
+onInput("d", () => {
+  if (gameOver) return;
+  if (playerPosition.x < 9) {
+    clearTile(playerPosition.x, playerPosition.y);
+    playerPosition.x += 1;
+    addSprite(playerPosition.x, playerPosition.y, player);
+  }
+});
+
+// Main game loop
+setInterval(() => {
+  spawnRock();
+  updateGame();
+}, 500);
