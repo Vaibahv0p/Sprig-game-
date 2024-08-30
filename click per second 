@@ -1,0 +1,12 @@
+let score = 0; // Initialize score
+let gameTime = 10; // Game duration in seconds
+let gameRunning = false; // Is the game running?
+
+// Function to start the game
+function startGame() {
+  score = 0; // Reset score
+  gameRunning = true; // Set game state to running
+  document.getElementById("startButton").style.display = "none"; // Hide the start button
+
+  // Set a timeout to end the game after gameTime seconds
+  setTimeout(endGame, gameTime * 1000);
