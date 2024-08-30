@@ -26,3 +26,22 @@ function handleTap() {
 function updateDisplay() {
   document.getElementById("scoreDisplay").innerText = "Taps: " + score;
 }
+// Function to end the game
+function endGame() {
+  gameRunning = false; // Set game state to not running
+  alert("Time's up! You scored " + score + " taps!"); // Display the final score
+  document.getElementById("startButton").style.display = "block"; // Show the start button again
+}
+
+// Set up the game area
+document.body.innerHTML = `
+  <div id="gameArea">
+    <h1>Tap Per Second Game</h1>
+    <button id="startButton" onclick="startGame()">Start Game</button>
+    <div id="scoreDisplay">Taps: 0</div>
+    <div id="tapArea" onclick="handleTap()" style="width: 300px; height: 300px; border: 1px solid black; cursor: pointer;"></div>
+  </div>
+`;
+
+// Initial display update
+updateDisplay();
