@@ -10,3 +10,19 @@ function startGame() {
 
   // Set a timeout to end the game after gameTime seconds
   setTimeout(endGame, gameTime * 1000);
+// Update the game display
+  updateDisplay();
+}
+
+// Function to handle taps
+function handleTap() {
+  if (gameRunning) {
+    score++; // Increment score for each tap
+    updateDisplay(); // Update display with the new score
+  }
+}
+
+// Function to update the display
+function updateDisplay() {
+  document.getElementById("scoreDisplay").innerText = "Taps: " + score;
+}
