@@ -75,3 +75,29 @@ function movePlayer(newX, newY) {
     playerPosition.x = newX;
     playerPosition.y = newY;
     addSprite(playerPosition.x, playerPosition.y, player);
+// Check if player reached the exit
+    if (getTile(playerPosition.x, playerPosition.y).some(tile => tile.type === exit)) {
+      addText("You Win!", { x: 4, y: 6, color: color`3` });
+    }
+  }
+}
+
+// Handle player input
+onInput("w", () => {
+  movePlayer(playerPosition.x, playerPosition.y - 1);
+});
+
+onInput("s", () => {
+  movePlayer(playerPosition.x, playerPosition.y + 1);
+});
+
+onInput("a", () => {
+  movePlayer(playerPosition.x - 1, playerPosition.y);
+});
+
+onInput("d", () => {
+  movePlayer(playerPosition.x + 1, playerPosition.y);
+});
+
+// Initialize the game by adding the player sprite to the starting position
+addSprite(playerPosition.x, playerPosition.y, player);
