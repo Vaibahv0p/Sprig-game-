@@ -132,3 +132,20 @@ onInput("d", () => {
     // Logic to reset or end the game
   }
 });
+let score = 0;
+
+function updateScore() {
+  clearText();
+  addText("Score: " + score, { x: 1, y: 0 });
+}
+
+afterInput(() => {
+  const rabbitObj = getFirst(rabbit);
+  const carrotAtRabbit = getTile(rabbitObj.x, rabbitObj.y).find(obj => obj.type === carrot);
+
+  if (carrotAtRabbit) {
+    clearTile(rabbitObj.x, rabbitObj.y);
+    score += 1;
+    updateScore();
+  }
+});
