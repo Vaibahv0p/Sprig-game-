@@ -155,3 +155,28 @@ function gameOver() {
 // Initial UI updates
 updateHealth();
 updateScore(); 
+// Movement controls for the rabbit
+onInput("w", () => {
+  getFirst(rabbit).y -= 1;
+});
+
+onInput("s", () => {
+  getFirst(rabbit).y += 1;
+});
+
+onInput("a", () => {
+  getFirst(rabbit).x -= 1;
+});
+
+onInput("d", () => {
+  getFirst(rabbit).x += 1;
+});
+
+// Function to handle random carrot respawn
+function respawnCarrot() {
+  const emptyTiles = getAllTiles().filter(tile => tile.every(obj => obj.type !== rabbit && obj.type !== rock && obj.type !== trap && obj.type !== powerUp));
+  if (emptyTiles.length > 0) {
+    const newCarrotTile = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+    addSprite(newCarrotTile.x, newCarrotTile.y, carrot);
+  }
+}
