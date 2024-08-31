@@ -222,4 +222,22 @@ afterInput(() => {
     score += 1;
     updateScore();
     respawnCarrot(); // Respawn a new carrot at a random location
+  // Check for rock collision
+  const rockAtRabbit = getTile(rabbitObj.x, rabbitObj.y).find(obj => obj.type === rock);
+  if (rockAtRabbit) {
+    health -= 1;
+    updateHealth();
+    if (health <= 0) {
+      gameOver();
+    }
+  }
+
+  // Check for trap collision
+  const trapAtRabbit = getTile(rabbitObj.x, rabbitObj.y).find(obj => obj.type === trap);
+  if (trapAtRabbit) {
+    health -= 1;
+    updateHealth();
+    if (health <= 0) {
+      gameOver();
+    }
   }
