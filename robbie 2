@@ -241,3 +241,21 @@ afterInput(() => {
       gameOver();
     }
   }
+  // Check for trap collision
+  const trapAtRabbit = getTile(rabbitObj.x, rabbitObj.y).find(obj => obj.type === trap);
+  if (trapAtRabbit) {
+    health -= 1;
+    updateHealth();
+    if (health <= 0) {
+      gameOver();
+    }
+  }
+
+  // Check for power-up collection
+  const powerUpAtRabbit = getTile(rabbitObj.x, rabbitObj.y).find(obj => obj.type === powerUp);
+  if (powerUpAtRabbit) {
+    clearTile(rabbitObj.x, rabbitObj.y);
+    health += 1; // Increase health by 1
+    updateHealth();
+  }
+});
