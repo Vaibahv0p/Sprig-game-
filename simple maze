@@ -1,0 +1,109 @@
+// Define game elements
+const player = "p";
+const wall = "w";
+const exit = "e";
+
+// Define game map (8x8 grid)
+setLegend(
+  [ player, bitmap`
+................
+................
+................
+.......6........
+.......666......
+.......6........
+................
+................
+................
+................
+................
+................
+................
+................
+................
+................` ],
+  [ wall, bitmap`
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111
+1111111111111111` ],
+  [ exit, bitmap`
+................
+................
+................
+.....333333.....
+....33333333....
+....33333333....
+....33333333....
+.....333333.....
+................
+................
+................
+................
+................
+................
+................
+................` ]
+);
+
+// Create the maze layout
+let level = 0;
+const levels = [
+  map`
+wwwwwwww
+wp.....w
+w..w...w
+w..w.w.w
+w..w.w.w
+w..w...w
+w.....ew
+wwwwwwww`
+];
+
+// Set initial level
+setMap(levels[level]);
+
+// Function to handle player movement
+onInput("w", () => {
+  getFirst(player).y -= 1; // Move up
+});
+
+onInput("s", () => {
+  getFirst(player).y += 1; // Move down
+});
+
+onInput("a", () => {
+  getFirst(player).x -= 1; // Move left
+});
+
+onInput("d", () => {
+  getFirst(player).x += 1; // Move right
+});
+
+// Game logic to check for collisions and exit
+afterInput(() => {
+  const playerTile = getFirst(player);
+
+  // Check for collision with walls
+  if (tilesWith(player, wall).length > 0) {
+    playerTile.x = 1; // Reset position to start if hit wall
+    playerTile.y = 1;
+  }
+
+  // Check if player reached the exit
+  if (tilesWith(player, exit).length > 0) {
+    addText("You Win!", { x: 4, y: 4, color: color`2` });
+  }
+});
