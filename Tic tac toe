@@ -36,3 +36,51 @@ function checkWin(player) {
 
   return false;
 }
+// Function to check for a tie
+function checkTie() {
+  for (let row = 0; row < 3; row++) {
+    for (let col = 0; col < 3; col++) {
+      if (board[row][col] === EMPTY) return false;
+    }
+  }
+  return true;
+}
+
+// Function to reset the game
+function resetGame() {
+  board = [
+    [EMPTY, EMPTY, EMPTY],
+    [EMPTY, EMPTY, EMPTY],
+    [EMPTY, EMPTY, EMPTY]
+  ];
+  currentPlayer = PLAYER_X;
+  drawBoard();
+}
+
+// Main game loop
+function update() {
+  if (input.mouseDown) {
+    let x = Math.floor(input.mouseX / 2);
+    let y = Math.floor(input.mouseY / 2);
+    
+    if (x >= 0 && x < 3 && y >= 0 && y < 3) {
+      if (board[y][x] === EMPTY) {
+        board[y][x] = currentPlayer;
+        if (checkWin(currentPlayer)) {
+          text(`${currentPlayer} Wins!`, 1, 6);
+          setTimeout(resetGame, 2000);
+        } else if (checkTie()) {
+          text('Tie Game!', 1, 6);
+          setTimeout(resetGame, 2000);
+        } else {
+          currentPlayer = (currentPlayer === PLAYER_X) ? PLAYER_O : PLAYER_X;
+        }
+      }
+    }
+  }
+
+  drawBoard();
+}
+
+// Start the game
+resetGame();
