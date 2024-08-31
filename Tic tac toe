@@ -1,0 +1,38 @@
+// Define the game board and players
+const EMPTY = '';
+const PLAYER_X = 'X';
+const PLAYER_O = 'O';
+
+let currentPlayer = PLAYER_X;
+let board = [
+  [EMPTY, EMPTY, EMPTY],
+  [EMPTY, EMPTY, EMPTY],
+  [EMPTY, EMPTY, EMPTY]
+];
+
+// Function to draw the board
+function drawBoard() {
+  clear();
+  for (let row = 0; row < 3; row++) {
+    for (let col = 0; col < 3; col++) {
+      let x = col * 2;
+      let y = row * 2;
+      if (board[row][col] !== EMPTY) {
+        text(board[row][col], x, y);
+      }
+    }
+  }
+}
+
+// Function to check for a win
+function checkWin(player) {
+  // Check rows, columns, and diagonals
+  for (let i = 0; i < 3; i++) {
+    if (board[i][0] === player && board[i][1] === player && board[i][2] === player) return true;
+    if (board[0][i] === player && board[1][i] === player && board[2][i] === player) return true;
+  }
+  if (board[0][0] === player && board[1][1] === player && board[2][2] === player) return true;
+  if (board[0][2] === player && board[1][1] === player && board[2][0] === player) return true;
+
+  return false;
+}
