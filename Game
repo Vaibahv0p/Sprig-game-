@@ -185,3 +185,23 @@ function update() {
       score++;
     }
   });
+  // Check if player fell off screen
+  if (playerY >= GAME_HEIGHT) {
+    gameOver();
+  }
+
+  draw();
+}
+
+// Game Over function
+function gameOver() {
+  clearInterval(gameLoop);
+  addText("Game Over!", { x: 5, y: 7, color: color`3` });
+}
+
+// Start the game loop
+let score = 0;
+let gameLoop = setInterval(update, 200);
+
+// Draw initial game state
+draw();
