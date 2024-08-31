@@ -150,3 +150,38 @@ const platforms = [
   { x: 10, y: 8 },
   { x: 5, y: 4 }
 ];
+// Function to draw game objects
+function draw() {
+  clearText();
+  clearSprites();
+
+  // Draw player
+  addSprite(playerX, playerY, PLAYER_CHAR);
+
+  // Draw platforms
+  platforms.forEach(platform => {
+    addSprite(platform.x, platform.y, PLATFORM_CHAR);
+  });
+
+  // Display score
+  addText(`Score: ${score}`, { x: 1, y: 1, color: color`2` });
+}
+
+// Function to handle player movement
+function update() {
+  if (input.right) {
+    playerX = Math.min(GAME_WIDTH - 1, playerX + 1);
+  } else if (input.left) {
+    playerX = Math.max(0, playerX - 1);
+  }
+
+  // Gravity effect
+  playerY += 1;
+
+  // Check collision with platforms
+  platforms.forEach(platform => {
+    if (playerX === platform.x && playerY === platform.y) {
+      playerY -= 2; // Bounce effect
+      score++;
+    }
+  });
