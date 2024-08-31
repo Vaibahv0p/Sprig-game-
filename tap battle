@@ -11,3 +11,32 @@ function drawScores() {
   addText(`Player 1: ${score1}`, { x: 1, y: 2, color: color`4` });
   addText(`Player 2: ${score2}`, { x: 1, y: 4, color: color`3` });
 }
+// Check for win condition
+function checkWin() {
+  if (score1 >= winScore) {
+    clearText();
+    addText("Player 1 Wins!", { x: 4, y: 6, color: color`4` });
+    stopGame();
+  } else if (score2 >= winScore) {
+    clearText();
+    addText("Player 2 Wins!", { x: 4, y: 6, color: color`3` });
+    stopGame();
+  }
+}
+
+// Handle input for player 1 (key 'a')
+onInput("a", () => {
+  score1++;
+  drawScores();
+  checkWin();
+});
+
+// Handle input for player 2 (key 'l')
+onInput("l", () => {
+  score2++;
+  drawScores();
+  checkWin();
+});
+
+// Initial draw of the scores
+drawScores();
