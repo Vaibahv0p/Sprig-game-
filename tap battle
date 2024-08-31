@@ -1,0 +1,13 @@
+// Set up game elements
+const player1 = "1";
+const player2 = "2";
+let score1 = 0;
+let score2 = 0;
+const winScore = 20; // Number of taps needed to win
+
+// Display the initial scores
+function drawScores() {
+  clearText();
+  addText(`Player 1: ${score1}`, { x: 1, y: 2, color: color`4` });
+  addText(`Player 2: ${score2}`, { x: 1, y: 4, color: color`3` });
+}
