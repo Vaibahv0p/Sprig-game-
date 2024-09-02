@@ -92,3 +92,75 @@ setLegend(
 ................
 ................`] // Background sprite
 );
+// Simple map for demonstration
+const map = map`
+...........................
+...........................
+...........................
+......................o....
+.....P....x..P.............
+....PP..P....PP....x.......
+...PPP..P..oPPP..P.....P....
+PPP.PPPPPPPPPPPPPPPPPPPP.PP.
+`;setMap(map);
+setBackground(background);
+
+// Define gravity and player variables
+let isJumping = false;
+let jumpHeight = 2;
+let gravity = 1;
+
+// Player movement: Jumping
+onInput("w", () => {
+  if (!isJumping) {
+    isJumping = true;
+    jump(jumpHeight);
+  }
+});
+
+// Jump function
+function jump(height) {
+  let jumpCounter = 0;
+  
+  const jumpInterval = setInterval(() => {
+    getFirst(player).y -= 1;
+    jumpCounter += 1;
+    
+    if (jumpCounter >= height) {
+      clearInterval(jumpInterval);
+      fall();
+    }
+  }, 100);
+}
+
+// Fall function with gravity
+function fall() {
+  const fallInterval = setInterval(() => {
+    if (!isGrounded()) {
+      getFirst(player).y += 1;
+    } else {
+      clearInterval(fallInterval);
+      isJumping = false;
+    }
+  }, 100);
+}
+
+// Check if player is on the ground
+function isGrounded() {
+  const playerX = getFirst(player).x;
+  const playerY = getFirst(player).y;
+  
+  const belowTile = getTile(playerX, playerY + 1);
+  return belowTile.some(tile => tile.type === platform);
+}
+
+// Collision detection for collecting items and hitting obstacles
+onCollision(player, collectible, (p, c) => {
+  removeSprite(c);
+  addText("Collected!", { y: 4, color: color`4` });
+});
+
+onCollision(player, obstacle, (p, o) => {
+  addText("Ouch!", { y: 4, color: color`3` });
+  // Add code to handle game over or reduce player's health
+});
